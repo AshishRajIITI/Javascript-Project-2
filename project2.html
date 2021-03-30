@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+        <title>SIMPLE MATHS GAME</title>
+        <style>
+         
+        body{
+            text-align:center;
+            border: solid;
+            border-width: 6px;
+            margin:300px 300px 300px 300px;  
+            padding: 0px ;
+            z-index: 1;
+            }
+       
+            
+        .guideline{
+              background-image: linear-gradient(90deg,#f5af2d,#b873ec); align-content: center    
+              padding: 10px 7px;
+              border: ridge;        
+              font-size: 30px;              
+            }            
+            
+        .p1{
+              background-color:greenyellow;
+              padding: 10px 3px;
+              border: ridge;
+              border-radius: 5px;            
+              font-size: 25px;
+              text-align: center;
+              height: 60px;           
+                      
+            }
+            
+         .details{
+              background-color: yellow;
+              display: inline-block;
+              width: auto;
+              padding: 20px 30px;
+              border: solid;
+              border-radius: 15px;            
+              font-size: 30px;
+              text-align: center;
+              align-content:left;
+              width:300px;
+            }
+        .score{
+              background-color: yellow;
+              display: inline-block;
+              width: auto;
+              padding: 20px 30px;
+              border: solid;
+              border-radius: 15px;            
+              font-size: 30px;
+              text-align: center;
+              align-content: right;
+              width:300px;
+  }
+ .opt{
+  background-color: #ec73bb ;
+  border-color:antiquewhite;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  color: black; 
+  
+}
+     .counter{
+  background-color: darkblue;
+  border-color:antiquewhite;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  
+  margin: 4px 2px;
+  cursor: pointer;
+  color:white; 
+  
+}
+     #start{                     
+  background-color: #943737;
+  border-color:antiquewhite;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  color:white; 
+            }
+             #reset{                     
+  background-color: #943737;
+  border-color:antiquewhite;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  color:white; 
+            }
+            .gameover{
+              position: absolute;
+              border:solid;
+              border-color: black;
+              background-color:red;
+              color:black;
+              position: absolute;
+              top:410px;
+              left:300px;
+              height: 150px;
+              width: 913px;
+              text-align: center;
+              font-size: 60px;
+              //z-index:-1;
+              padding: 69px 0px 0px 0px; 
+              display:none;
+            }
+        
+        </style>
+        
+    </head>
+    
+    <body>
+    <div id="insidebox" style="background-color:skyblue">   
+    <p class="details" id="details">COMMENTS:</p>
+    <p class="score " id="score"> Score: 0</p>
+    <p class="p1" id="p1"></p>
+    <p class ="guideline" id="guideline"><b>Click On The Correct Option!</b></p>  
+    
+    <button class="opt" id="option1" onclick="checkans(1)"></button>
+    <button class="opt" id="option2" onclick="checkans(2)"></button>
+    <button class="opt" id="option3" onclick="checkans(3)"></button>
+    <button class="opt" id="option4" onclick="checkans(4)"></button>
+       
+    <br/> <br/>
+    <button name="start" id="start" onclick="reset() ">Start Game!</button> 
+    
+        
+    <p  class="counter" id="counter" >Time Left: </p>
+    <p class="gameover" id= "gameover"></p>
+    </div>     
+    </body>
+    
+    <script>
+   
+      var o1,o2,o3,o4,a1,a2,a,x;  
+        
+    function nxtquestion(){
+    a1=Math.round(Math.random()*10);
+    a2=Math.round(Math.random()*10);
+        
+    a = document.getElementById("p1").innerHTML= a1+ " X " +a2;
+        
+    var i=Math.ceil(Math.random()*4);
+    oi=document.getElementById("option" + i).innerHTML= a1*a2;  
+    document.getElementById("option" + i).value=oi;
+    
+    var j;    
+    for( j=1 ; j<5 ; j++){
+        if(j!=i){
+         oj = document.getElementById("option" + j).innerHTML=Math.round(Math.random()*10)*Math.round(Math.random()*10) ; 
+         document.getElementById("option" + j).value=oj;
+        }     
+    }           
+    }
+        var score=0;
+
+     function checkans(k){
+         var x1=document.getElementById("option"+k).value;
+         if(x1==a1*a2){
+             document.getElementById("details").innerHTML="Your answer is correct";
+             score+=1;
+             document.getElementById("score").innerHTML="Score: " + score; 
+             nxtquestion();
+                          
+         } 
+         else{
+             document.getElementById("details").innerHTML="Your answer is  wrong";
+         }
+         
+     }
+              
+ var count=0;
+        
+function reset(){ 
+nxtquestion();    
+if(count==0){
+         
+var counter = document.getElementById("counter");
+ x = 5;
+ var myCounter = setInterval(function(){
+ x--;
+ if(x<0){
+ clearInterval(myCounter) ;
+document.getElementById("gameover").innerHTML="game has finished"; 
+document.getElementById("gameover").style.display="block";  
+return;
+ } else{ 
+    counter.innerHTML ="Time Left: "+ x;
+ }
+ },1000);
+            
+        count+=1;    
+        var changename = document.getElementById("start") ;
+        changename.innerHTML="Reset Game"; 
+        }
+        else{
+            window.location.reload();
+        }    
+     } 
+    
+    </script>
+
+
+
+</html>
