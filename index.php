@@ -1,5 +1,5 @@
 <?php
 
-include_once("project2.js");
+include_once("project2.html");
 
 ?>
