@@ -156,8 +156,8 @@
       var o1,o2,o3,o4,a1,a2,a,x;  
         
     function nxtquestion(){
-    a1=Math.round(Math.random()*10);
-    a2=Math.round(Math.random()*10);
+    a1=Math.round(Math.random()*100);
+    a2=Math.round(Math.random()*100);
         
     a = document.getElementById("p1").innerHTML= a1+ " X " +a2;
         
@@ -168,7 +168,7 @@
     var j;    
     for( j=1 ; j<5 ; j++){
         if(j!=i){
-         oj = document.getElementById("option" + j).innerHTML=Math.round(Math.random()*10)*Math.round(Math.random()*10) ; 
+         oj = document.getElementById("option" + j).innerHTML=Math.round(Math.random()*100)*Math.round(Math.random()*100) ; 
          document.getElementById("option" + j).value=oj;
         }     
     }           
@@ -185,7 +185,7 @@
                           
          } 
          else{
-             document.getElementById("details").innerHTML="Your answer is  wrong";
+             document.getElementById("details").innerHTML="Your answer is  wrong, please try again.";
          }
          
      }
@@ -197,7 +197,7 @@ nxtquestion();
 if(count==0){
          
 var counter = document.getElementById("counter");
- x = 5;
+ x = 50;
  var myCounter = setInterval(function(){
  x--;
  if(x<0){
